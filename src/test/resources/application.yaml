@@ -1,0 +1,21 @@
+spring:
+  profiles: tests
+  liquibase:
+    change-log: "classpath:db/changelog/db.test.changelog-master.yaml"
+  jpa:
+    database: h2
+    generate-ddl: true
+    show-sql: true
+  datasource:
+    url: jdbc:h2:mem:testDB;DB_CLOSE_DELAY=-1
+    platform: h2
+    username: sa
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+      path: /h2
+      settings:
+        trace: false
+        web-allow-others: false
+

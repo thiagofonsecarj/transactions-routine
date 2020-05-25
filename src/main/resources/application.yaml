@@ -1,0 +1,25 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: transaction-routine
+liquibase:
+  enabled: true
+---
+spring:
+  profiles: local
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+  liquibase:
+    change-log: "classpath:db/changelog/db.local.changelog-master.yaml"
+    enabled: true
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:25432/transactions_routine?currentSchema=trc
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
+
