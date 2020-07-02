@@ -1,0 +1,29 @@
+version: '3.5'
+
+services:
+  transaction-routine:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "root"
+    ports:
+      - "25432:5432"
+    volumes:
+      - /home/challenge/transaction:/var/lib/mysql
+    networks:
+      - postgres-compose-network
+
+  pgadmin-transaction-routine:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "thiagofonsecarj@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "root"
+    ports:
+      - "26543:80"
+    depends_on:
+      - transaction-routine
+    networks:
+      - postgres-compose-network
+
+networks:
+  postgres-compose-network:
+    driver: bridge
